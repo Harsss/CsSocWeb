@@ -70,7 +70,7 @@ def allowed_file(filename):
 def Upload():
     # might need to add more validation here, rogue users may still be able to view the form
      # Only Loggged In user can edit the post
-    if ('Admin' in session and session['Admin'] == "MathSSC"):
+    if ('Admin' in session and session['Admin'] == "CompSSC"):
         # checks if form containing the file is submitted
         if(request.method == 'POST'):
             # checks whether a file has been selected for upload or not
@@ -114,7 +114,7 @@ def redirect_to_dashboard(e):
 @app.route("/delete/<int:PostId>", methods=['GET', 'POST'])
 def delete(PostId):
     # Only Loggged In user can edit the post
-    if ('Admin' in session and session['Admin'] == "MathSSC"):
+    if ('Admin' in session and session['Admin'] == "CompSSC"):
         PostId = str(PostId)
         post = Posts.query.filter_by(PostId=PostId).first()
         db.session.delete(post)
@@ -132,7 +132,7 @@ def Logout():
 @app.route("/dashboard/edit/<int:PostId>", methods=['GET', 'POST'])
 def edit(PostId):
     # Only Loggged In user can edit the post
-    if ('Admin' in session and session['Admin'] == "MathSSC"):
+    if ('Admin' in session and session['Admin'] == "CompSSC"):
         # Checks if form is submitted
         if request.method == 'POST':
             # Vars hold intermediate values that are filled into the form
@@ -193,14 +193,14 @@ def edit(PostId):
 @app.route("/dashboard", methods=['GET', 'POST'])
 def dashboard():
  # checks if user already logged in
-    if ('Admin' in session and session['Admin'] == "MathSSC"):
+    if ('Admin' in session and session['Admin'] == "CompSSC"):
         Post = Posts.query.all()
         return render_template('adminPanel.html', Posts=Post)
     # Checks if login form submitted
     if (request.method == 'POST'):
         UserName = request.form.get('UserName')
         Password = request.form.get('Password')
-        checkuse = "MathSSC"
+        checkuse = "CompSSC"
         checkpass = "Aryabhatta"
         if(UserName == checkuse and Password == checkpass):
             # Set The Session Variable
