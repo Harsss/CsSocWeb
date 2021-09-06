@@ -200,8 +200,8 @@ def dashboard():
     if (request.method == 'POST'):
         UserName = request.form.get('UserName')
         Password = request.form.get('Password')
-        checkuse = "MathSSC"
-        checkpass = "Aryabhatta"
+        checkuse = "cssssc"
+        checkpass = "robofight"
         if(UserName == checkuse and Password == checkpass):
             # Set The Session Variable
             session['Admin'] = UserName
